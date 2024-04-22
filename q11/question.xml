@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE question-paper SYSTEM "./question.dtd">
+<question-paper>
+    <question no="1">
+        <text>Which of the following is not a SQL complient database?</text>
+        <optionA>MongoDB</optionA>
+        <optionB>PostgreSQL</optionB>
+        <optionC>MySQL</optionC>
+        <optionD>MariaDB</optionD>
+        <answer value="optionA"></answer>
+    </question>
+    <question no="2">
+        <text>Which of the following is not used in wireless routing?</text>
+        <optionA>Adhoc on-demand distance vector routing</optionA>
+        <optionB>Destination sequence distance vector routing</optionB>
+        <optionC>Dynamic Source Routing</optionC>
+        <optionD>Link State Routing</optionD>
+        <answer value="optionD"></answer>
+    </question>
+</question-paper>

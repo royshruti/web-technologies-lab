@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+  </head>
+  <body style="text-align:center;">
+    <canvas id="myCanvas" style="padding: 200px;">
+      Your browser does not support the canvas tag.
+    </canvas>
+
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        // Draw an oval (ellipse)
+        drawElipse(100, 75, 0)  
+        drawElipse(0, 0, Math.PI/4)
+        drawElipse(0, 0, Math.PI/2)
+
+        function drawElipse(x, y, angle) {
+            ctx.beginPath();
+            ctx.ellipse(x, y, 100, 30, 0, 0, 2 * Math.PI);
+            ctx.strokeStyle = "blue"
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.translate(x, y)
+            ctx.rotate(angle+Math.PI/4)
+        }
+    </script>
+  </body>
+</html>

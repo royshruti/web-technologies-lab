@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorial Table Generator</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <h1>Factorial Table Generator</h1>
+  <label for="numberInput">Enter a number:</label>
+  <input type="number" id="numberInput" min="0" step="1" value="5">
+  <button onclick="calculateFactorial()">Generate Factorial Table</button>
+
+  <h2>Factorial Table</h2>
+  <table id="factorialTable">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Factorial</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <script>
+    // Function to create a web worker
+    function createWorker() {
+      const workerCode = `
+        // Function to calculate the factorial of a number
+        function calculateFactorial(number) {
+          if (number === 0 || number === 1) {
+            return 1;
+          } else {
+            return number * calculateFactorial(number - 1);
+          }
+        }
+
+        // Listen for messages from the main thread
+        self.addEventListener('message', (event) => {
+          const inputNumber = event.data;
+          const factorialTable = [];
+
+          for (let i = 1; i <= inputNumber; i++) {
+            factorialTable.push({ number: i, factorial: calculateFactorial(i) });
+          }
+
+          // Send the factorial table back to the main thread
+          self.postMessage(factorialTable);
+        });
+      `;
+
+      const blob = new Blob([workerCode], { type: 'application/javascript' });
+      return new Worker(URL.createObjectURL(blob));
+    }
+
+    // Function to calculate factorial using a web worker
+    function calculateFactorial() {
+      const inputNumber = document.getElementById('numberInput').value;
+      const worker = createWorker();
+
+      // Listen for messages from the worker
+      worker.addEventListener('message', (event) => {
+        const factorialTable = event.data;
+        displayFactorialTable(factorialTable);
+        worker.terminate(); // Terminate the worker after use
+      });
+
+      // Send the input number to the worker
+      worker.postMessage(inputNumber);
+    }
+
+    // Function to display the factorial table on the page
+    function displayFactorialTable(factorialTable) {
+      const tableBody = document.getElementById('tableBody');
+      tableBody.innerHTML = '';
+
+      factorialTable.forEach(({ number, factorial }) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${number}</td><td>${factorial}</td>`;
+        tableBody.appendChild(row);
+      });
+    }
+  </script>
+</body>
+
+</html>

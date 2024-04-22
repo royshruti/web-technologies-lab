@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Validation</title>
+    <style>
+        .error-message {
+            color: red;
+        }
+        input{
+         padding : 10px;
+         margin : 10px;
+        }
+        #password{
+         margin : 27px;
+        }
+        body{
+         background-color:darkgrey;
+        }
+        
+    </style>
+</head>
+<body>
+ <div class = "alignment">
+   <form id="loginForm">
+      <label for="loginName">Login Name:</label>
+      <input type="text" id="loginName" name="loginName" oninput="validateLoginName()" required>
+      <br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" oninput="validatePassword()" required>
+      <br>
+
+      <label id="errorLabel" class="error-message"></label>
+      <br>
+
+      <input type="submit" value="Login">
+  </form>
+ </div>
+
+    <script>
+        function validateLoginName() {
+            const loginNameInput = document.getElementById('loginName');
+            const errorLabel = document.getElementById('errorLabel');
+
+            const loginNameRegex = /^[a-zA-Z0-9_]{1,10}$/;
+            const isValidLoginName = loginNameRegex.test(loginNameInput.value);
+
+            if (!isValidLoginName) {
+                errorLabel.textContent = 'Invalid login name. It can only have alphanumeric characters and "_" with a maximum length of 10.';
+            } else {
+                errorLabel.textContent = '';
+            }
+        }
+
+        function validatePassword() {
+            const passwordInput = document.getElementById('password');
+            const errorLabel = document.getElementById('errorLabel');
+
+            const passwordRegex = /^(?=.*\d)(?=.*[A-Z]).{6,10}$/;
+            const isValidPassword = passwordRegex.test(passwordInput.value);
+
+            if (!isValidPassword) {
+                errorLabel.textContent = 'Invalid password. It must have 6 to 10 characters with at least one digit and one uppercase letter.';
+            } else {
+                errorLabel.textContent = '';
+            }
+        }
+    </script>
+
+</body>
+</html>

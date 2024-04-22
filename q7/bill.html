@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bill Payment</title>
+    <link rel="stylesheet" href="bill.css">
+</head>
+<body>
+
+    <form id="paymentForm">
+        <h1>Online Bill Payment</h1>
+        <label>
+            <input type="radio" name="paymentOption" value="payNow" checked> Pay Now
+        </label>
+        <label>
+            <input type="radio" name="paymentOption" value="payLater"> Pay Later
+        </label>
+        <div id="dateInputContainer" style="display: none;">
+            <label for="paymentDate">Payment Date:</label>
+            <!-- Use input type "date" for a date picker -->
+            <input type="date" id="paymentDate" name="paymentDate">
+        </div>
+        <input type="submit" value="Submit Payment">
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var payLaterRadio = document.querySelector('input[name="paymentOption"][value="payLater"]');
+            var dateInputContainer = document.getElementById('dateInputContainer');
+
+            payLaterRadio.addEventListener('change', function () {
+                dateInputContainer.style.display = payLaterRadio.checked ? 'block' : 'none';
+            });
+
+            document.getElementById('paymentForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                alert('Payment submitted successfully!');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        .container {
+            border: 2px solid black;
+            height: 50vh;
+            width: 50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10%;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            /* margin: 10%; */
+            margin-top: 10%;
+            height: 100%;
+            width: 100%;
+        }
+        .form input{
+            border-radius: 10px;
+            height: 2rem;
+
+        }
+        .form button{
+            width:50%;
+            border: 1px solid black;
+            border-radius: 5px;
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Login Form</h1>
+    <div class="container">
+        <form action="" class="form">
+            <input aria-label="Username" placeholder="Enter Login Name" type="text" id="username" required>
+            <input aria-label="Password" placeholder="Enter the Password" type="" id="password" required>
+            <button type="submit" title="Submit" aria-label="submit" onclick="verifyCreds(event)">
+                SubmitForm
+            </button>
+            <label id="error" style="color: red;"></label>
+        </form>
+    </div>
+
+    <script>
+        
+        function verifyCreds(event) {
+            event.preventDefault();
+
+            let usernameInput = document.getElementById('username');
+            let passwordInput = document.getElementById('password');
+            let error = document.getElementById('error');
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            function alphaNumeric(s){
+                for(let i=0;i<s.length;i++){
+                    let c = s[i];
+                    if(('a'<=c && c<='z') || ('A'<=c && 'Z'>=c) ||(c<='9' && c>='0') || c=='_'){
+                        continue;
+                    }else{
+                        console.log(c);
+                        error.innerText= 'Username can only have A-Z, a-z, 0-9 , _'
+                        return false;
+                    } 
+                }
+
+                return true;
+            }
+
+            function passCheck(s){
+                let upperCase = false;
+                let digit = false;
+
+                for(let i=0;i<s.length;i++){
+                    let c = s[i];
+                    if(('A'<=c && 'Z'>=c)){
+                        upperCase = true;
+                    }else if(c<='9' && c>='0'){
+                        digit = true;
+                    } 
+                }
+
+                return s.length>=6 && s.length<=10 && digit && upperCase;
+            }
+
+            if (!alphaNumeric(username)) {
+                return false;
+            }else if(username.length>10){
+                error.innerText = 'username can have max 10 chars'
+                return false;
+            }
+            else if (!passCheck(password)){
+                console.log(password);
+                error.innerText= 'Password must have a Capital letter and a Number'
+                return false;
+            }
+
+            alert("Credentials Verfied Successfully!!")
+
+            return true;
+
+        }
+
+    </script>
+</body>
+
+</html>

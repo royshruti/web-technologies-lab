@@ -1,0 +1,83 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    /* Optional: Set table width */
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+    /* Align table headers to the left */
+    background-color: #f2f2f2;
+    /* Optional: Set background color for headers */
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#add-button {
+    background-color: #4CAF50;
+    /* Green for adding */
+    color: white;
+}
+
+#show-button,
+#update-button,
+#delete-button {
+    background-color: #3498DB;
+    /* Blue for viewing/updating/deleting */
+    color: white;
+}
+
+#dialog-container {
+    /* Set background color and some padding */
+    /*background-color: #f2f2f2;*/
+    padding: 20px;
+    /*border: 1px solid #ddd;*/
+    /*border-radius: 4px; !* Rounded corners *!*/
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); !* Subtle shadow *!*/
+    display: flex;
+    width: min-content;
+}
+
+#dialog-container label {
+    display: inline-block;
+    /* Display labels on separate lines */
+    margin-bottom: 5px;
+}
+
+#dialog-container input,
+#dialog-container button {
+    padding: 10px;
+    margin-bottom: 10px;
+    /* Add some spacing between elements */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#dialog-container button {
+    cursor: pointer;
+    /* Indicate clickable buttons */
+}
+
+#dialog-submit {
+    background-color: #4CAF50;
+    /* Green for submit button */
+    color: white;
+}
+
+#dialog-cancel {
+    background-color: #ccc;
+    /* Gray for cancel button */
+    color: black;
+}

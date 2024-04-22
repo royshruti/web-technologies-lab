@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Home Page</title>
+</head>
+<body>
+    <p style="color: rgb(21, 21, 231)"> You will be redirected to logout page in 10 seconds...</p>
+<script>
+// Set the timeout in milliseconds (5 seconds in this example)
+const timeoutDuration = 5000; 
+
+function redirectToLogout() {
+    window.location.href = 'logout.html';
+}
+
+function resetTimeout() {
+    clearTimeout(idleTimeout);
+    idleTimeout = setTimeout(redirectToLogout, timeoutDuration);
+}
+
+let idleTimeout = setTimeout(redirectToLogout, timeoutDuration);
+
+document.addEventListener('mousemove', resetTimeout);
+document.addEventListener('keydown', resetTimeout);
+
+</script>
+
+</body>
+</html>

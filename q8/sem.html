@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Selector</title>
+    <link rel="stylesheet" href="sem.css">
+</head>
+<body>
+
+    <h1>Subject Selector</h1>
+
+    <label for="year">Select Year:</label>
+    <select id="year">
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+    </select>
+
+    <label for="semester">Select Semester:</label>
+    <select id="semester">
+        <option value="1">1st Semester</option>
+        <option value="2">2nd Semester</option>
+    </select>
+
+    <h2>Subjects:</h2>
+    <ul id="subjectList"></ul>
+
+    <script>
+        const subjectsData = {
+            '1': {
+                '1': ['PHYSICS', 'CHEMISTRY', 'MATHEMATICS 1'],
+                '2': ['ELECTRICAL', 'ELECTRONICS', 'CPNM']
+            },
+            '2': {
+                '1': ['OBJECT ORIENTED PROGRAMMING', 'DBMS', 'DATA STRUCTURES AND ALGORITHNS'],
+                '2': ['COMPUTER NETWORKS', 'OOS', 'SOFTWARE ENGINEERING']
+            },
+            '3': {
+                '1': ['WEB TECH 1', 'MOBILE NETWORKS', 'ARTIFICIAL INTELLIGENCE'],
+                '2': ['WEB TECH 2', 'MATHEMATICS 2', 'MULTIMEDIA']
+            },
+            '4': {
+                '1': ['MACHILE LEARNING', 'MATHEMATICS 3', 'OPEN ELECTIVE 1'],
+                '2': ['MATHEMATICS 4', 'OPEN ELECTIVE 2', 'AUTOMATA & COMPILER']
+            }
+        };
+
+        function updateSubjectList() {
+            const yearSelect = document.getElementById('year');
+            const semesterSelect = document.getElementById('semester');
+            const subjectList = document.getElementById('subjectList');
+
+            const selectedYear = yearSelect.value;
+            const selectedSemester = semesterSelect.value;
+
+            
+            subjectList.innerHTML = '';
+
+            const subjects = subjectsData[selectedYear][selectedSemester];
+            subjects.forEach(subject => {
+                const listItem = document.createElement('li');
+                listItem.textContent = subject;
+                subjectList.appendChild(listItem);
+            });
+        }
+
+        document.getElementById('year').addEventListener('change', updateSubjectList);
+        document.getElementById('semester').addEventListener('change', updateSubjectList);
+
+        updateSubjectList();
+    </script>
+</body>
+</html>

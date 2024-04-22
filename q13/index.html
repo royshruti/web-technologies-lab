@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Computer Components</title>
+    <!-- <link href="style.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <h1>Computer Components</h1>
+    <button id="add-button">Add Component</button>
+    <button id="show-button">Show Components</button>
+    <button id="update-button">Update Component</button>
+
+    <div id="component-list"></div>
+    <div id="dialog-container" style="display: none;">
+        <label for="component-name">Name:</label>
+        <input id="component-name" type="text">
+        <br>
+        <label for="component-manufacturer">Manufacturer:</label>
+        <input id="component-manufacturer" type="text">
+        <br>
+        <label for="component-price">Price:</label>
+        <input id="component-price" type="number">
+        <br>
+        <button id="dialog-submit">Submit</button>
+        <button id="dialog-cancel">Cancel</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

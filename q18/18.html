@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    SSE prices of stocks
+    <div id="price"></div>
+    <script>
+        if (typeof (EventSource) != "undefined") {
+            es = new EventSource("18.jsp");
+            es.onmessage = function (evt) {
+                document.getElementById("price").innerHTML = evt.data;
+            };
+        }
+        else
+            document.getElementById("price").innerHTML = "Your Browser Does Not Support SSE";
+    </script>
+</body>
+
+</html>

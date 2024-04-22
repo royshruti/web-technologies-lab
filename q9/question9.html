@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State and District Information</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: azure;
+        }
+
+        div {
+            display: flex;
+            width: 300px;
+            flex-direction: column;
+            justify-content: center;
+            margin: 30px;
+            padding: 10px;
+        }
+    </style>
+
+    <div>
+        <label for="states">Select State:</label>
+        <select id="states" onchange="populateDistricts()">
+            <option value="">Select State</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="tamilnadu">Tamil Nadu</option>
+            <option value="westbengal">West Bengal</option>
+        </select>
+    </div>
+    <div>
+        <label for="districts">Select District:</label>
+        <select id="districts" onchange="displayDistrictInfo()">
+            <option value="">Select District</option>
+        </select>
+    </div>
+    <div id="districtInfo">
+
+    </div>
+
+    <script>
+        const districtInfoData = {
+            maharashtra: {
+                mumbai: 'Mumbai (/mʊmˈbaɪ/ ⓘ, Marathi: [ˈmumbəi], IAST: Muṃbaī; formerly known as Bombay[a] — the official name until 1995) is the capital city of the Indian state of Maharashtra. Mumbai is the de facto financial centre and the most populous city of India with an estimated city proper population of 12.5 million (1.25 crore).[19] Mumbai is the centre of the Mumbai Metropolitan Region, the sixth most populous metropolitan area in the world with a population of over 23 million (2.3 crore) living within the Mumbai Metropolitan Region.[20] Mumbai lies on the Konkan coast on the west coast of India and has a deep natural harbour. In 2008, Mumbai was named an alpha world city.[21][22]',
+                pune: 'Pune (/ˈpuːnə/ POO-nə, Marathi: [ˈpuɳe] ⓘ), previously spelled in English as Poona (the official name until 1978),[15][16] is a city in Maharashtra state in the Deccan plateau in Western India. It is the administrative headquarters of the Pune district, and of Pune division. According to the 2011 Census of India, Pune is the ninth-most populous city in India with a population of 3.1 million residents within the city limits, and has a population of 7.2 million residents in the metropolitan region, making it the eight-most populous metropolitan area in India. [17] The city of Pune is part of Pune Metropolitan Region.[18] Pune is one of the largest IT hubs in India.[19][20] It is also one of the most important automobile and manufacturing hubs of India.[21] Pune is often referred to as "Oxford of the East" because of its highly regarded educational institutions.[22][23][24] It has been ranked "the most liveable city in India" several times.[25][26]',
+            },
+            tamilnadu: {
+                chennai: 'Chennai is the capital city of Tamil Nadu.',
+                coimbatore: 'Coimbatore is a major city in Tamil Nadu with a strong industrial base.',
+            },
+            bihar: {
+                buxar: 'Buxar is reknowned for its rich culture.',
+                patna: 'Patna is the capital of Bihar',
+            },
+            westbengal: {
+                kolkata: 'Kolkata,also known as Calcutta which was the official name until 2001) is the capital and largest city of the Indian state of West Bengal. It lies on the eastern bank of the Hooghly River, 80 km (50 mi) west of the border with Bangladesh. It is the primary financial and commercial center of eastern and northeastern India.Kolkata is the seventh most populous city of India with an estimated city proper population of 4.5 million (0.45 crore).',
+                westmidnapore: 'Medinipur or Midnapore is a city known for its history in the Indian state of West Bengal. It is the headquarters of the West Medinipur district. It is situated on the banks of the Kangsabati River (variously known as Kasai and Cossye). ',
+                burdwan: 'Bardhaman, officially Bardhaman Sadar, is a city and municipality in the state of West Bengal, India. It is the headquarters of Purba Bardhaman district, having become a district capital during the period of British rule. Burdwan, an alternative name for the city, has remained in use since then.'
+            }
+        };
+
+        function populateDistricts() {
+            const statesDropdown = document.getElementById('states');
+            const districtsDropdown = document.getElementById('districts');
+            const selectedState = statesDropdown.value;
+
+
+            districtsDropdown.innerHTML = '<option value="">Select District</option>';
+
+            if (selectedState && districtInfoData[selectedState]) {
+                const districts = Object.keys(districtInfoData[selectedState]);
+                districts.forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district;
+                    option.textContent = district;
+                    districtsDropdown.appendChild(option);
+                });
+            }
+        }
+
+        function displayDistrictInfo() {
+            const statesDropdown = document.getElementById('states');
+            const districtsDropdown = document.getElementById('districts');
+            const districtInfoContainer = document.getElementById('districtInfo');
+            const selectedState = statesDropdown.value;
+            const selectedDistrict = districtsDropdown.value;
+
+
+            if (selectedState && selectedDistrict && districtInfoData[selectedState]) {
+                const districtInfo = districtInfoData[selectedState][selectedDistrict];
+                districtInfoContainer.textContent = districtInfo;
+            } else {
+                districtInfoContainer.textContent = '';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

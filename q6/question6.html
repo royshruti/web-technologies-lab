@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+
+<script>
+    let idleTimer;
+    const timeLimit = 10000;
+    function timeOut(){
+        console.log('timeout')
+        window.location.pathname='/first.html'
+    }
+    function resetIdleTimer(){
+        clearTimeout(idleTimer)
+        idleTimer = setTimeout(timeOut,timeLimit)
+    }
+    document.addEventListener('mousemove', resetIdleTimer);
+    document.addEventListener('keydown', resetIdleTimer);
+
+    resetIdleTimer();
+</script>
+</body>
+</html>
